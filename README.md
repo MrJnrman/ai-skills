@@ -23,7 +23,12 @@ ai-skills/
 ├── README.md
 ├── setup.sh
 └── skills/
-    └── (your skills go here)
+    ├── my-skill.md                    # Simple single-file skill
+    └── implementation-planning/        # Complex directory-based skill
+        ├── SKILL.md                   # Main skill definition
+        ├── README.md                  # Skill documentation
+        ├── scripts/                   # Supporting scripts
+        └── references/                # Reference files
 ```
 
 ## Installing Skills
@@ -80,8 +85,17 @@ Examples:
 
 ## Creating New Skills
 
-1. Create a new `.md` file in the `skills/` directory
-2. Follow the skill format:
+Skills can be either single files or directories, depending on complexity.
+
+### Simple Skills (Single File)
+
+For straightforward skills, create a `.md` file directly in the `skills/` directory:
+
+```
+skills/my-skill.md
+```
+
+Format:
 
 ```markdown
 ---
@@ -93,6 +107,26 @@ description: Brief description of what the skill does
 
 Instructions and prompts for the skill...
 ```
+
+### Complex Skills (Directory)
+
+For skills that need supporting files (scripts, references, etc.), create a directory with a `SKILL.md` file:
+
+```
+skills/my-complex-skill/
+├── SKILL.md           # Required: Main skill definition
+├── README.md          # Optional: Documentation
+├── scripts/           # Optional: Supporting scripts
+└── references/        # Optional: Reference files
+```
+
+The `SKILL.md` file follows the same format as simple skills.
+
+## Available Skills
+
+| Skill | Type | Description |
+|-------|------|-------------|
+| `implementation-planning` | Directory | Defines how implementation plans are written, structured, critiqued, and revised |
 
 ## Keeping Skills Updated
 
