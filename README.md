@@ -21,56 +21,61 @@ git clone https://github.com/MrJnrman/ai-skills.git
 ```
 ai-skills/
 ├── README.md
+├── setup.sh
 └── skills/
     └── (your skills go here)
 ```
 
 ## Installing Skills
 
-Skills need to be symlinked to your local `.claude/skills` directory to be available in Claude Code.
+Skills need to be symlinked to your local `~/.claude/skills` directory to be available in Claude Code. Use the included `setup.sh` script to manage this.
 
-### Option 1: Symlink Individual Skills
+### Link All Skills
 
 ```bash
-# Create the skills directory if it doesn't exist
-mkdir -p ~/.claude/skills
-
-# Symlink a specific skill
-ln -s /path/to/ai-skills/skills/skill-name.md ~/.claude/skills/skill-name.md
+./setup.sh
 ```
 
-### Option 2: Symlink the Entire Skills Directory
-
-If you want all skills from this repo to be available:
+### Link a Specific Skill
 
 ```bash
-# Remove existing skills directory if it exists (backup first if needed)
-# mv ~/.claude/skills ~/.claude/skills.backup
-
-# Symlink the entire skills directory
-ln -s /path/to/ai-skills/skills ~/.claude/skills
+./setup.sh skill-name
 ```
 
-### Option 3: Use a Setup Script
-
-Create a simple setup script for convenience:
+### List Available Skills
 
 ```bash
-#!/bin/bash
-REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
-CLAUDE_SKILLS_DIR="$HOME/.claude/skills"
+./setup.sh --list
+```
 
-mkdir -p "$CLAUDE_SKILLS_DIR"
+### Remove Skill Links
 
-for skill in "$REPO_DIR"/skills/*.md; do
-    if [ -f "$skill" ]; then
-        skill_name=$(basename "$skill")
-        ln -sf "$skill" "$CLAUDE_SKILLS_DIR/$skill_name"
-        echo "Linked: $skill_name"
-    fi
-done
+```bash
+# Remove a specific skill
+./setup.sh --remove skill-name
 
-echo "Skills installation complete!"
+# Remove all skill links
+./setup.sh --remove --all
+```
+
+### Full Usage
+
+```
+Usage: ./setup.sh [options] [skill-name]
+
+Options:
+  -h, --help     Show help message
+  -l, --list     List available skills
+  -a, --all      Link all available skills (default if no skill specified)
+  -r, --remove   Remove symlinks instead of creating them
+
+Examples:
+  ./setup.sh              # Link all skills
+  ./setup.sh --all        # Link all skills
+  ./setup.sh my-skill     # Link a specific skill
+  ./setup.sh -r my-skill  # Remove a specific skill link
+  ./setup.sh -r --all     # Remove all skill links
+  ./setup.sh --list       # List available skills
 ```
 
 ## Creating New Skills
