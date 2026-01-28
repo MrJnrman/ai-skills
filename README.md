@@ -127,6 +127,7 @@ The `SKILL.md` file follows the same format as simple skills.
 | Skill | Type | Description |
 |-------|------|-------------|
 | `implementation-planning` | Directory | Defines how implementation plans are written, structured, critiqued, and revised |
+| `qit` | Directory | QIT (Quality Insights Toolkit) CLI for WooCommerce extension testing - running tests, managing environments, and working with test packages |
 
 ## Keeping Skills Updated
 
